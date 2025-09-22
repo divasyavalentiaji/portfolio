@@ -150,8 +150,10 @@ const projects = {
   ],
 };
 
+type ProjectCategory = keyof typeof projects;
+
 export default function ProjectsSection() {
-  const [activeTab, setActiveTab] = useState("UI/UX Design");
+  const [activeTab, setActiveTab] = useState<ProjectCategory>("UI/UX Design");
   const [selectedProject, setSelectedProject] = useState(null);
   const sectionRef = useRef(null);
   
