@@ -18,6 +18,16 @@ const categories = ["UI/UX Design", "Web Development", "Data Science"] as const;
 
 type ProjectCategory = typeof categories[number]; // "UI/UX Design" | "Web Development" | "Data Science"
 
+interface Project {
+  title: string;
+  description: string;
+  image: string;
+  year: number;
+  tools: string[];
+  links: { label: string; url: string }[];
+  details: string;
+}
+
 // Map label ke icon
 const iconMap = {
   Figma: <FaFigma size={18} />,
@@ -154,7 +164,7 @@ const projects = {
 
 export default function ProjectsSection() {
   const [activeTab, setActiveTab] = useState<ProjectCategory>("UI/UX Design");
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const sectionRef = useRef(null);
   
   // DETEKSI INVIEW UNTUK ANIMASI
