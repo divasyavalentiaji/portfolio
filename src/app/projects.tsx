@@ -14,7 +14,9 @@ import {
 import { SiGooglecolab } from "react-icons/si";
 
 // Categories tabs
-const categories = ["UI/UX Design", "Web Development", "Data Science"];
+const categories = ["UI/UX Design", "Web Development", "Data Science"] as const;
+
+type ProjectCategory = typeof categories[number]; // "UI/UX Design" | "Web Development" | "Data Science"
 
 // Map label ke icon
 const iconMap = {
@@ -150,8 +152,6 @@ const projects = {
   ],
 };
 
-type ProjectCategory = keyof typeof projects;
-
 export default function ProjectsSection() {
   const [activeTab, setActiveTab] = useState<ProjectCategory>("UI/UX Design");
   const [selectedProject, setSelectedProject] = useState(null);
@@ -198,7 +198,7 @@ export default function ProjectsSection() {
         {categories.map((category) => (
           <button
             key={category}
-            onClick={() => setActiveTab(category)}
+            onClick={() => setActiveTab(category as ProjectCategory)}
             className={`pb-2 text-sm sm:text-base font-medium transition-colors duration-300 ${
               activeTab === category
                 ? "text-[#0000CC]"
