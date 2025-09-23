@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
+import { useSwipeable } from "react-swipeable";
 
 // DATA CERTIFICATES
 const certificates = [
@@ -134,15 +135,12 @@ export default function Certificates() {
       {/* POPUP FULLSCREEN CERTIFICATES */}
       {selectedImages && (
         <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center px-4">
-          {/* CLOSE BUTTON */}
           <button
             onClick={() => setSelectedImages(null)}
             className="absolute top-4 right-4 text-white text-3xl z-50 hover:scale-110 transition"
           >
             ✕
           </button>
-
-          {/* CAROUSEL */}
           <CertificateCarousel images={selectedImages} />
         </div>
       )}
@@ -150,57 +148,39 @@ export default function Certificates() {
   );
 }
 
-// COMPONENT CAROUSEL HARUS DI LUAR JSX
+// COMPONENT CAROUSEL
 function CertificateCarousel({ images }: { images: string[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const prev = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  };
+  const prev = () => setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  const next = () => setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
 
-  const next = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-  };
+  const handlers = useSwipeable({
+    onSwipedLeft: next,
+    onSwipedRight: prev,
+    trackMouse: true,
+    preventScrollOnSwipe: true,
+  });
 
   return (
-    <div className="relative w-full max-w-4xl h-[80vh] flex items-center justify-center">
-      {/* IMAGE */}
+    <div {...handlers} className="relative w-full max-w-4xl h-[80vh] flex items-center justify-center">
       <div className="relative w-full h-full">
         <Image
           src={images[currentIndex]}
           alt={`Certificate Page ${currentIndex + 1}`}
           fill
-          className="object-contain"
+          className="object-contain pointer-events-none"
         />
       </div>
 
-      {/* LEFT ARROW */}
       {images.length > 1 && (
-        <button
-          onClick={prev}
-          className="absolute left-2 top-1/2 transform -translate-y-1/2 text-white text-4xl z-50 hover:scale-110 transition"
-        >
-          ‹
-        </button>
-      )}
-
-      {/* RIGHT ARROW */}
-      {images.length > 1 && (
-        <button
-          onClick={next}
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white text-4xl z-50 hover:scale-110 transition"
-        >
-          ›
-        </button>
-      )}
-
-      {/* PAGE INDICATOR */}
-      {images.length > 1 && (
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm">
-          {currentIndex + 1} / {images.length}
-        </div>
+        <>
+          <button onClick={prev} className="absolute left-2 top-1/2 transform -translate-y-1/2 text-white text-4xl z-50 hover:scale-110 transition">‹</button>
+          <button onClick={next} className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white text-4xl z-50 hover:scale-110 transition">›</button>
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm">
+            {currentIndex + 1} / {images.length}
+          </div>
+        </>
       )}
     </div>
   );
