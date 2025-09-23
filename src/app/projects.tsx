@@ -18,13 +18,18 @@ const categories = ["UI/UX Design", "Web Development", "Data Science"] as const;
 
 type ProjectCategory = typeof categories[number]; // "UI/UX Design" | "Web Development" | "Data Science"
 
+interface Link {
+  label: keyof typeof iconMap; 
+  url: string;
+}
+
 interface Project {
   title: string;
   description: string;
   image: string;
   year: number;
   tools: string[];
-  links: { label: string; url: string }[];
+  links: Link[];  
   details: string;
 }
 
@@ -40,7 +45,7 @@ const iconMap = {
 };
 
 // Projects data per kategori
-const projects = {
+const projects: Record<ProjectCategory, Project[]> = {
   "UI/UX Design": [
     {
       title: "SiKantin",
