@@ -133,35 +133,75 @@ export default function Certificates() {
 
       {/* POPUP FULLSCREEN CERTIFICATES */}
       {selectedImages && (
-        <div
-            className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center px-4"
+        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center px-4">
+          {/* CLOSE BUTTON */}
+          <button
             onClick={() => setSelectedImages(null)}
-        >
-            <div className="relative max-w-4xl w-full max-h-[90vh] overflow-auto bg-white rounded-lg p-4">
-            {/* CLOSE BUTTON */}
-            <button
-                onClick={() => setSelectedImages(null)}
-                className="absolute top-2 right-2 text-gray-600 hover:text-red-500 text-xl font-bold"
-            >
-                ✕
-            </button>
+            className="absolute top-4 right-4 text-white text-3xl z-50 hover:scale-110 transition"
+          >
+            ✕
+          </button>
 
-            {/* RENDER ALL SELECTED CERTIFICATE IMAGES */}
-            <div className="flex flex-col gap-6">
-                {selectedImages.map((img, i) => (
-                <div key={i} className="relative w-full h-[80vh] max-h-[600px]">
-                    <Image
-                    src={img}
-                    alt={`Certificate Page ${i + 1}`}
-                    fill
-                    className="object-contain"
-                    />
-                </div>
-                ))}
-            </div>
-            </div>
+          {/* CAROUSEL */}
+          <CertificateCarousel images={selectedImages} />
         </div>
-        )}
+      )}
     </section>
+  );
+}
+
+// COMPONENT CAROUSEL HARUS DI LUAR JSX
+function CertificateCarousel({ images }: { images: string[] }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const prev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const next = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <div className="relative w-full max-w-4xl h-[80vh] flex items-center justify-center">
+      {/* IMAGE */}
+      <div className="relative w-full h-full">
+        <Image
+          src={images[currentIndex]}
+          alt={`Certificate Page ${currentIndex + 1}`}
+          fill
+          className="object-contain"
+        />
+      </div>
+
+      {/* LEFT ARROW */}
+      {images.length > 1 && (
+        <button
+          onClick={prev}
+          className="absolute left-2 top-1/2 transform -translate-y-1/2 text-white text-4xl z-50 hover:scale-110 transition"
+        >
+          ‹
+        </button>
+      )}
+
+      {/* RIGHT ARROW */}
+      {images.length > 1 && (
+        <button
+          onClick={next}
+          className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white text-4xl z-50 hover:scale-110 transition"
+        >
+          ›
+        </button>
+      )}
+
+      {/* PAGE INDICATOR */}
+      {images.length > 1 && (
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm">
+          {currentIndex + 1} / {images.length}
+        </div>
+      )}
+    </div>
   );
 }

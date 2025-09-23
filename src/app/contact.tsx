@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 export default function Contact() {
   // REF SECTION CONTACT
@@ -86,7 +87,8 @@ export default function Contact() {
                 <img
                 src="/icons/icons8-gmail.svg"
                 alt="Email"
-                className="w-5 h-5"
+                width={20} 
+                height={20}
                 />
             </a>
             <a
@@ -96,10 +98,11 @@ export default function Contact() {
                 title="WhatsApp"
                 className="w-9 h-9 bg-[#25D366] rounded-full shadow-md flex items-center justify-center hover:brightness-110 transition hover:scale-110"
             >
-                <img
+                <Image
                 src="/icons/icons8-whatsapp.svg"
                 alt="WhatsApp"
-                className="w-5 h-5"
+                width={20} 
+                height={20}
                 />
             </a>
             <a
@@ -109,10 +112,11 @@ export default function Contact() {
                 title="LinkedIn"
                 className="w-9 h-9 bg-[#0077B5] rounded-full shadow-md flex items-center justify-center hover:brightness-110 transition hover:scale-110"
             >
-                <img
+                <Image
                 src="/icons/icons8-linkedin.svg"
                 alt="LinkedIn"
-                className="w-5 h-5"
+                width={20} 
+                height={20}
                 />
             </a>
             </div>

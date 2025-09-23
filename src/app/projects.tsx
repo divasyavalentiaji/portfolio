@@ -150,7 +150,7 @@ const projects: Record<ProjectCategory, Project[]> = {
         { label: "Google Colab", url: "https://colab.research.google.com/drive/13CaJcufMo7r1qA_IrNFCKh8IKYoayq_E?usp=sharing" },
         { label: "Document", url: "https://drive.google.com/file/d/1OSWmxJGRAvRo6Lp7R1QkVQKJE-1SJenJ/view?usp=sharing" }
       ],
-      details: "This project analyzes the Bank Marketing Dataset to understand customer behavior and deposit decisions. After data preparation, analysis, and modeling with Random Forest and CatBoost, the results compared model performance and identified key drivers of deposits, helping banks refine marketing and personalize services."
+      details: "This project analyzes the Bank Marketing Dataset to understand customer behavior and deposit decisions. After data preparation and modeling with Random Forest and CatBoost, the models’ performance was compared and key drivers of deposits identified, helping banks refine marketing strategies and personalize services."
     },
     {
       title: "Sales Trend Prediction with Linear Regression",
@@ -162,7 +162,7 @@ const projects: Record<ProjectCategory, Project[]> = {
         { label: "Google Colab", url: "https://drive.google.com/drive/folders/1RCpR5y9w4rwLv29SeMY0cf_ndrrwYp7o?usp=sharing" },
         { label: "PowerPoint", url: "https://www.canva.com/design/DAGH7AzYzJA/xlqbapu8zCzU_D67Y07onQ/view?utm_content=DAGH7AzYzJA&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h4e00f3ec6c" }
       ],
-      details: "This project explores an Online Retail Dataset to study customer transactions, revenue patterns, and country-level sales performance. The workflow includes data cleaning, exploratory analysis, correlation study, and predictive modeling with linear regression. The results provide insights into historical sales behavior and generate future trend forecasts, supporting businesses in making strategic and data-driven decisions."
+      details: "This project explores an Online Retail Dataset to study customer transactions, revenue patterns, and country-level sales performance. The workflow includes data cleaning, exploratory analysis, correlation study, and Linear Regression modeling. The results offer insights into historical sales and forecast future trends, supporting strategic, data-driven business decisions."
     },
   ],
 };

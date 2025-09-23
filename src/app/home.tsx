@@ -53,10 +53,12 @@ export default function Home() {
           {/* LOGO */}
           <div className="flex items-center">
               <a href="#home" className="flex items-center">
-                <img
-                  src="images/logo.png"
+                <Image
+                  src="/images/logo.png"
                   alt="Logo"
-                  className="h-10 w-auto cursor-pointer"
+                  width={40} 
+                  height={40}
+                  className="cursor-pointer"
                 />
               </a>
           </div>
