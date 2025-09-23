@@ -118,7 +118,7 @@ const projects: Record<ProjectCategory, Project[]> = {
     {
       title: "PRETTYU",
       description: "A beauty e-commerce landing page website that showcases products and brand identity through a clean, modern, and user-friendly design.",
-      image: "/images/PRETTYU.jpg",
+      image: "/images/prettyu.jpg",
       year: 2022,
       tools: ["HTML", "CSS", "Bootstrap"],
       links: [
