@@ -153,7 +153,7 @@ export default function Home() {
             Divasya Valentiaji
           </h1>
           <p className="text-base sm:text-lg mb-6 leading-relaxed text-gray-700">
-            {"I'm an Information Systems graduate with an interest in system analysis, UI/UX design, web development, and data science. Here's a look at some of my work."}
+            {"I'm an Information Systems graduate with interests in UI/UX design, web development, system analysis, and data analytics. Here's a look at some of my work."}
           </p>
 
           <a
